@@ -1,9 +1,8 @@
 let bg;
 let buttonColor;
-let progress = 0;
 let drawingStage = 0;
 let userStrokes = []; // Array to store multiple user strokes
-let currentStroke = []; // Current stroke being draw
+let currentStroke = []; // Current stroke being drawn
 
 function setup() {
   //set background image and resize to canvas size
@@ -11,10 +10,9 @@ function setup() {
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThxhDjaaoaxOs4H2x5gFwD5Ta05PkrSYJQfg&s"
   );
   bg.resize(400, 400);
-
   //set canvas size
   createCanvas(400, 400);
-
+  
   //set Next button
   let buttonColor = color(235, 166, 7); //initial button color
   button = createButton("Next -->");
@@ -22,9 +20,17 @@ function setup() {
   button.size(80, 40);
   button.style("font-family", "Comic Sans MS");
   button.style("background-color", buttonColor);
-
+  
+  //set Reset button
+  resetButton = createButton("Reset");
+  resetButton.position(50, 330);
+  resetButton.size(80, 40);
+  resetButton.style("font-family", "Comic Sans MS");
+  resetButton.style("background-color", color(255, 99, 71));
+  
   //change button color when clicked
   button.mousePressed(changeColor);
+  resetButton.mousePressed(resetDrawing);
 }
 
 function draw() {
@@ -43,7 +49,6 @@ function title() {
   stroke(0);
   strokeWeight(2);
   rect(80, 25, 240, 50, 10);
-
   //title text
   textSize(32);
   fill(0, 0, 0);
@@ -58,7 +63,6 @@ function drawArea() {
   stroke(0);
   strokeWeight(3);
   rect(110, 100, 180, 200, 10);
-
   //Alphabet to trace
   drawingContext.setLineDash([10, 10]);
   line(140, 270, 200, 120);//left line
@@ -72,12 +76,17 @@ function changeColor() {
   button.style("background-color", buttonColor);
 }
 
+function resetDrawing() {
+  // Reset all drawing-related variables
+  userStrokes = [];
+  currentStroke = [];
+}
+
 function drawTracedPath() {
   // Draw each stroke that the user has made
   strokeWeight(8);//stroke weight
   drawingContext.setLineDash([0, 0]);//reset line dash so that the strokes doesn't have dashes in them
   noFill();
-
   //set stroke for each stroke made
   for (let userStroke of userStrokes) {
     stroke(26, 76, 240);//set stroke color to blue
@@ -88,7 +97,6 @@ function drawTracedPath() {
     }
     endShape();
   }
-
   //start and end shape based on stroke made using the mouse
   if (mouseIsPressed && isInsideArea(mouseX, mouseY)) {
     currentStroke.push({ x: mouseX, y: mouseY });
