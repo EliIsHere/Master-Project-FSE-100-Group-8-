@@ -21,16 +21,27 @@ function setup() {
   button.style("font-family", "Comic Sans MS");
   button.style("background-color", buttonColor);
   
+<<<<<<< Updated upstream
+=======
+  //when next button is pressed, switch back to main menu
+  button.mousePressed(() => window.location.href = 'https://editor.p5js.org/toantam1712005/full/-1wkZ_ybT');
+  
+>>>>>>> Stashed changes
   //set Reset button
   resetButton = createButton("Reset");
   resetButton.position(50, 330);
   resetButton.size(80, 40);
   resetButton.style("font-family", "Comic Sans MS");
   resetButton.style("background-color", color(255, 99, 71));
+<<<<<<< Updated upstream
   
   //change button color when clicked
   button.mousePressed(changeColor);
   resetButton.mousePressed(resetDrawing);
+=======
+  resetButton.mousePressed(resetDrawing);
+  
+>>>>>>> Stashed changes
 }
 
 function draw() {
