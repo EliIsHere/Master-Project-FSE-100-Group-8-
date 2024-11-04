@@ -14,7 +14,8 @@ function setup() {
     { x: 300, y: 100, size: 90, speed: 0.6 }
   ];
   
-  let buttonTexts = ['Letter Tracing', 'Alphabet Test', 'Shape Practice', 'Audible Test'];
+  // Removed 'Audible Test' from the button texts array
+  let buttonTexts = ['Letter Tracing', 'Alphabet Test', 'Shape Practice'];
   for (let i = 0; i < buttonTexts.length; i++) {
     buttons.push(new Button(width/2, 300 + i*70, 200, 50, buttonTexts[i]));
   }
@@ -130,6 +131,20 @@ function mousePressed() {
 function startGame(gameType) {
   console.log("Starting game:", gameType);
   // Add your game logic here
+  switch(gameType) {
+    case 'Letter Tracing':
+    window.location.href = "https://editor.p5js.org/echook/full/U8fP-1j15";
+    break;
+    
+    case 'Alphabet Test':
+      window.location.href = "https://editor.p5js.org/cjjolley/full/6eD4iqgf_"; // Replace with your p5js link for Alphabet Test
+      break;
+      
+    case 'Shape Practice':
+      window.location.href = "https://editor.p5js.org/lvidaldi/full/dOlcHFGOD"; // Replace with your p5js link for Shape Practice
+      break;
+      
+  }
 }
 
 class Button {
